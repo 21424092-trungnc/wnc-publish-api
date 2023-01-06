@@ -1,0 +1,27 @@
+{
+    "definition": {
+        "openapi": "3.0.1",
+        "info": {
+            "title": "WNC - G9 - BANK",
+            "version": "1.0.0",
+            "description": "Đồ án môn học công nghệ mới - Public API",
+            "license": {
+                "name": "MIT",
+                "url": "https: //spdx.org/licenses/MIT.html"
+            },
+            "contact": {
+                "name": "NHÓM 9",
+                "url": "https://two1hcb-wnc-g9-api.onrender.com/",
+                "email": "chitrung0895@gmail.com"
+            }
+        },
+        "servers": [
+            {
+                "url": "http: //localhost:3000"
+            }
+        ]
+    },
+    "apis": [
+        "./swagger-ui/*.js"
+    ]
+}

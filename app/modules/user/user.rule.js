@@ -1,0 +1,41 @@
+const Joi = require('joi');
+
+const ruleCreateOrUpdate = {
+  first_name: Joi.string().required(),
+  last_name: Joi.string().required(),
+  gender: Joi.number().valid(0,1).required(),
+  birthday: Joi.string().regex(/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/),
+  email: Joi.string().email().required(),
+  phone_number: Joi.string(),
+  address: Joi.string(),
+  default_picture_url: Joi.string().allow('', null),
+};
+
+const ruleResetPassword = {
+  password: Joi.string().required(),
+  password_confirm: Joi.string().required().valid(Joi.ref('password')),
+};
+const ruleChangePasswordUser = {
+  old_password: Joi.string().required(),
+  new_password: Joi.string().required(),
+  re_password: Joi.string().required().valid(Joi.ref('new_password')),
+};
+
+const validateRules = {
+  createUser: {
+    body: Object.assign({}, ruleCreateOrUpdate, ruleResetPassword, {
+      user_name: Joi.required(),
+    }),
+  },
+  updateUser: {
+    body: ruleCreateOrUpdate,
+  },
+  resetPassword: {
+    body: ruleResetPassword,
+  },
+  changePasswordUser: {
+    body: ruleChangePasswordUser,
+  },
+};
+
+module.exports = validateRules;
