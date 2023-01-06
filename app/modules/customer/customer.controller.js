@@ -1,20 +1,20 @@
-const httpStatus = require("http-status");
-const customerService = require("./customer.service");
-const SingleResponse = require("../../common/responses/single.response");
-const ListResponse = require("../../common/responses/list.response");
-const ErrorResponse = require("../../common/responses/error.response");
-const RESPONSE_MSG = require("../../common/const/responseMsg.const");
-const ValidationResponse = require("../../common/responses/validation.response");
-const apiHelper = require("../../common/helpers/api.helper");
-const stringHelper = require("../../common/helpers/string.helper");
+const httpStatus = require('http-status');
+const customerService = require('./customer.service');
+const SingleResponse = require('../../common/responses/single.response');
+const ListResponse = require('../../common/responses/list.response');
+const ErrorResponse = require('../../common/responses/error.response');
+const RESPONSE_MSG = require('../../common/const/responseMsg.const');
+const ValidationResponse = require('../../common/responses/validation.response');
+const apiHelper = require('../../common/helpers/api.helper');
+const stringHelper = require('../../common/helpers/string.helper');
 
 const getAccountByNumber = async (req, res, next) => {
   try {
-    const accountNumber = apiHelper.getQueryParam(req, "accountnumber");
-    console.log("accountNumber", accountNumber);
+    const accountNumber = apiHelper.getQueryParam(req, 'accountnumber');
+    console.log('accountNumber', accountNumber);
     if (!accountNumber) {
       return next(
-        new ErrorResponse(httpStatus.NOT_FOUND, null, RESPONSE_MSG.NOT_FOUND)
+        new ErrorResponse(httpStatus.NOT_FOUND, null, RESPONSE_MSG.NOT_FOUND),
       );
     }
 
@@ -22,7 +22,7 @@ const getAccountByNumber = async (req, res, next) => {
     const customer = await customerService.getAccountByNumber(accountNumber);
     if (!customer) {
       return next(
-        new ErrorResponse(httpStatus.NOT_FOUND, null, RESPONSE_MSG.NOT_FOUND)
+        new ErrorResponse(httpStatus.NOT_FOUND, null, RESPONSE_MSG.NOT_FOUND),
       );
     }
 
@@ -32,8 +32,8 @@ const getAccountByNumber = async (req, res, next) => {
       new ErrorResponse(
         httpStatus.NOT_IMPLEMENTED,
         error,
-        RESPONSE_MSG.REQUEST_FAILED
-      )
+        RESPONSE_MSG.REQUEST_FAILED,
+      ),
     );
   }
 };

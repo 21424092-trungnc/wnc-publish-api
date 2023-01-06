@@ -1,19 +1,19 @@
-const database = require("../../models");
-const CustomerClass = require("../customer/customer.class");
-const PROCEDURE_NAME = require("../../common/const/procedureName.const");
-const apiHelper = require("../../common/helpers/api.helper");
-const stringHelper = require("../../common/helpers/string.helper");
-const fileHelper = require("../../common/helpers/file.helper");
-const mssql = require("../../models/mssql");
-const logger = require("../../common/classes/logger.class");
-const API_CONST = require("../../common/const/api.const");
-const ServiceResponse = require("../../common/responses/service.response");
-const folderNameAvatar = "avatar";
-const config = require("../../../config/config");
-const cacheHelper = require("../../common/helpers/cache.helper");
-const CACHE_CONST = require("../../common/const/cache.const");
-const cache = require("../../common/classes/cache.class");
-const _ = require("lodash");
+const database = require('../../models');
+const CustomerClass = require('../customer/customer.class');
+const PROCEDURE_NAME = require('../../common/const/procedureName.const');
+const apiHelper = require('../../common/helpers/api.helper');
+const stringHelper = require('../../common/helpers/string.helper');
+const fileHelper = require('../../common/helpers/file.helper');
+const mssql = require('../../models/mssql');
+const logger = require('../../common/classes/logger.class');
+const API_CONST = require('../../common/const/api.const');
+const ServiceResponse = require('../../common/responses/service.response');
+const folderNameAvatar = 'avatar';
+const config = require('../../../config/config');
+const cacheHelper = require('../../common/helpers/cache.helper');
+const CACHE_CONST = require('../../common/const/cache.const');
+const cache = require('../../common/classes/cache.class');
+const _ = require('lodash');
 
 const getAccountByNumber = async (accountNumber) => {
   try {
@@ -24,7 +24,7 @@ const getAccountByNumber = async (accountNumber) => {
           PAYMENTNUMBER: accountNumber,
         },
         type: database.QueryTypes.SELECT,
-      }
+      },
     );
 
     if (customer.length) {
@@ -35,7 +35,7 @@ const getAccountByNumber = async (accountNumber) => {
     return null;
   } catch (e) {
     logger.error(e, {
-      function: "customerService.detailCustomer",
+      function: 'customerService.detailCustomer',
     });
 
     return null;

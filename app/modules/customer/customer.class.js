@@ -1,13 +1,13 @@
-const Transform = require("../../common/helpers/transform.helper");
+const Transform = require('../../common/helpers/transform.helper');
 
 const templateAccountNumber = {
-  accountNumber: "{{#? PAYMENTNUMBER}}",
-  accountName: "{{#? PAYMENTNAME  }}",
+  accountNumber: '{{#? PAYMENTNUMBER}}',
+  accountName: '{{#? PAYMENTNAME  }}',
 };
 
 const accountNumber = (data) => {
   let transform = new Transform(templateAccountNumber);
-  return transform.transform(data, ["accountNumber", "accountName"]);
+  return transform.transform(data, ['accountNumber', 'accountName']);
 };
 
 module.exports = {

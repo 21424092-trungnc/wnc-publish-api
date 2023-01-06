@@ -1,10 +1,10 @@
-const database = require("../../models");
-const BankingClass = require("../banking/banking.class");
-const PROCEDURE_NAME = require("../../common/const/procedureName.const");
-const userService = require("../user/user.service");
+const database = require('../../models');
+const BankingClass = require('../banking/banking.class');
+const PROCEDURE_NAME = require('../../common/const/procedureName.const');
+const userService = require('../user/user.service');
 
 const createTransaction = async (model) => {
-  console.log(model)
+  console.log(model);
   let data = {
     BANKID: model.bankid,
     SIGNATURE: model.signature,
@@ -30,15 +30,15 @@ const createTransaction = async (model) => {
         @CHARGEAMOUNT=:CHARGEAMOUNT,
         @CONTENT=:CONTENT`;
   const bankDetail = await userService.detailBankConnect(model.bankid);
-  if (bankDetail == null) {
+  if (bankDetail === null) {
     return null;
   }
   let transaction;
   try {
     // get transaction
     transaction = await database.sequelize.transaction();
-console.log(query)
-console.log(data);
+    console.log(query);
+    console.log(data);
     const result = await database.sequelize.query(query, {
       replacements: data,
       type: database.QueryTypes.INSERT,
@@ -54,7 +54,7 @@ console.log(data);
     await transaction.commit();
     return result[0][0];
   } catch (err) {
-    console.log("err.message", err.message);
+    console.log('err.message', err.message);
     // Rollback transaction only if the transaction object is defined
     if (transaction) {
       await transaction.rollback();
